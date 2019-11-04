@@ -1,7 +1,7 @@
 <template>
   <div class="aside fcc">
     <UserIfo></UserIfo>
-    <MenuList style="flex:1"></MenuList>
+    <MenuList></MenuList>
   </div>
 </template>
 <script>

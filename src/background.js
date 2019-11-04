@@ -1,5 +1,6 @@
 'use strict'
 
+const path = require('path');
 import {
   Menu,
   app,
@@ -31,13 +32,16 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1000,
     height: 600,
+    frame: false, // 无边框
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true
     },
     icon: '../public/favicon.ico'
   })
-  win.openDevTools({mode:'bottom'});
+  win.openDevTools({
+    mode: 'bottom'
+  });
 
   // 创建菜单
   createMenu()
@@ -63,12 +67,10 @@ function createMenu() {
   if (process.platform === 'darwin') {
     const template = [{
       label: 'App Demo',
-      submenu: [{
-        role: 'about'
-      },
-      {
-        role: 'quit'
-      }
+      submenu: [{role: 'about'},
+        {
+          role: 'quit'
+        }
       ]
     }]
     let menu = Menu.buildFromTemplate(template)
@@ -91,15 +93,32 @@ app.on('activate', () => {
   }
 })
 
+/**
+ * 进程间通信
+ */
 // 窗口关闭
-ipcMain.on('all-window-close',()=>{
-  console.log(121212)
+ipcMain.on('all-window-close', () => {
   win.close()
+})
+// 窗口最小化
+ipcMain.on('all-window-mini', () => {
+  win.minimize()
+})
+// 窗口最大化
+ipcMain.on('all-window-maxi', () => {
+  win.maximize()
+})
+// 窗口正常化
+ipcMain.on('all-window-normal', () => {
+  win.setBounds({
+    width: 1000,
+    height: 600
+  })
 })
 
 app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
-
+    BrowserWindow.addDevToolsExtension(path.resolve(__dirname, '../devTools/vue-devtools'));
   }
   createWindow()
 })

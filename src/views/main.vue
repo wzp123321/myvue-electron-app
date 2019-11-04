@@ -41,11 +41,11 @@ export default {
   .aside {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to bottom, #efefef, #efefef);
+    background: #fafafa;
   }
 
   .header {
-    background: #fafafa;
+    background: #fff;
   }
 
   .main {
@@ -55,6 +55,7 @@ export default {
     display: flex;
     flex: 1;
     flex-shrink: 0;
+    background: #fafafa;
   }
 
   .footer {
