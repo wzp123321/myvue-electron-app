@@ -1,0 +1,11 @@
+.fcc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flex-space {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
