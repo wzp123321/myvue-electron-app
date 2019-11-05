@@ -1,6 +1,6 @@
 <template>
   <div class="singer-item">
-    <img :src="singerInfo.picUrl" alt />
+    <img :src="singerInfo.picUrl" alt @click="toSingerInfoPage(singerInfo.id)" />
     <h1>{{singerInfo.name}}</h1>
   </div>
 </template>
@@ -10,6 +10,11 @@ export default {
   props: {
     singerInfo: {
       type: Object
+    }
+  },
+  methods: {
+    toSingerInfoPage(id) {
+      this.$router.push("/music/singer/info/" + id);
     }
   }
 };

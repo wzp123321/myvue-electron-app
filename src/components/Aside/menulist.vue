@@ -1,5 +1,5 @@
 <template>
-  <el-scrollbar class="menu-view scroll-page">
+  <div class="menu-view">
     <div v-for="(item,index) in menulist" :key="index" class="menu-group">
       <div class="menu-title">{{item.title}}</div>
       <div
@@ -13,16 +13,13 @@
         </div>
       </div>
     </div>
-  </el-scrollbar>
+  </div>
 </template>
 <script>
-import { Scrollbar } from "element-ui";
 import { menulist } from "@/common/index.js";
+
 export default {
   name: "MenuList",
-  components: {
-    "el-scrollbar": Scrollbar
-  },
   data() {
     return {
       menulist: []
@@ -39,13 +36,6 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.scroll-page {
-  overflow-y: scroll;
-  overflow: hidden;
-  /deep/ .el-scrollbar__wrap {
-    overflow-x: hidden;
-  }
-}
 .menu-view {
   flex: 1;
   overflow: hidden;

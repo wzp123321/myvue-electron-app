@@ -74,6 +74,7 @@ export default {
   .bannerimg {
     width: 100%;
     height: 100%;
+    border-radius: 5px;
   }
   .title {
     text-align: left;

@@ -1,17 +1,21 @@
 <template>
   <div class="aside">
     <UserIfo></UserIfo>
-    <MenuList></MenuList>
+    <el-scrollbar>
+      <MenuList></MenuList>
+    </el-scrollbar>
   </div>
 </template>
 <script>
 import UserIfo from "./userinfo";
 import MenuList from "./menulist";
+import { Scrollbar } from "element-ui";
 export default {
   name: "AsideView",
   components: {
     UserIfo,
-    MenuList
+    MenuList,
+    "el-scrollbar": Scrollbar
   }
 };
 </script>
@@ -20,5 +24,11 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+.scroll-page {
+  overflow: hidden;
+  /deep/ .el-scrollbar__wrap {
+    overflow-x: hidden;
+  }
 }
 </style>

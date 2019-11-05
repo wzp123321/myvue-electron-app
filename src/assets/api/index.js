@@ -74,7 +74,7 @@ export default {
   getSingerDescbyId(params) {
     return getRequest(this.$$path.getsingerdescbyid, params)
   },
-  //    根据id获取歌手单曲
+  //    根据id获取歌手
   getSingerArtist(params) {
     return getRequest(this.$$path.getsingerartist, params)
   },
@@ -82,7 +82,7 @@ export default {
   getSingerMVList(params) {
     return getRequest(this.$$path.getsingermvlist, params)
   },
-  //    根据id获取歌手MV细节
+  //    根据id获取MV细节
   getMvDetailByd(params) {
     return getRequest(this.$$path.getmvdetailbyid, params)
   },

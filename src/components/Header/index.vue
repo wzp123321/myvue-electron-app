@@ -1,8 +1,12 @@
 <template>
   <div class="flex-space header-wrapper">
     <div style="-webkit-app-region: no-drag" class="left">
-      <!-- <i class="iconfont iconwebicon214"></i>
-      <i class="iconfont iconxiangyou"></i>-->
+      <i
+        class="iconfont iconwebicon214"
+        style="display:inline-block;margin-right:10px"
+        @click="routeBack"
+      ></i>
+      <!-- <i class="iconfont iconxiangyou" @click="routeGo"></i> -->
       <div>
         <i class="iconfont iconshuaxin" @click="reloadWindow"></i>
       </div>
@@ -26,11 +30,17 @@
 <script>
 const { ipcRenderer } = require("electron");
 import { MessageBox, Input } from "element-ui";
-import HttpApi from '@/assets/api/index'
+import HttpApi from "@/assets/api/index";
 export default {
   name: "HeaderView",
   components: {
     "el-input": Input
+  },
+  props: {
+    height: {
+      type: String,
+      default:'50'
+    }
   },
   data() {
     return {
@@ -68,10 +78,15 @@ export default {
           ipcRenderer.send("all-window-close");
         })
         .catch(() => {});
+    },
+    routeBack() {
+      this.$router.back();
     }
+    // routeGo(){
+    //   this.$router.go()
+    // }
   },
-  async created() {
-  }
+  async created() {}
 };
 </script>
 <style lang="less" scoped>

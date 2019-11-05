@@ -33,6 +33,10 @@ const routes = [{
           component: require('@/pages/music/singer/index').default,
         },
         {
+          path: '/music/singer/info/:id',
+          component: require('@/pages/music/singer/singerInfo').default,
+        },
+        {
           path:'/music',
           redirect: '/music/list'
         }
