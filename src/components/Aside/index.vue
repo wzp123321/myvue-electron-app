@@ -1,5 +1,5 @@
 <template>
-  <div class="aside fcc">
+  <div class="aside">
     <UserIfo></UserIfo>
     <MenuList></MenuList>
   </div>
@@ -16,4 +16,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.aside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 </style>

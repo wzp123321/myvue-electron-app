@@ -35,9 +35,11 @@ export default {
 </script>
 <style lang="less" scoped>
 .userinfo-wrap {
-  width: 100%;
-  padding: 40px 0;
-  text-align: center;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .iconfont {
     font-size: 48px;
     color: #06a5ff;

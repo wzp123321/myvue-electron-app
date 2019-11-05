@@ -8,14 +8,24 @@ import {
   BrowserWindow,
   ipcMain
 } from 'electron'
+
 import {
   createProtocol,
   installVueDevtools
 } from 'vue-cli-plugin-electron-builder/lib'
+
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
+
+const {
+  WINDOW_WIDTH,
+  WINDOW_HEIGHT
+} = require('./common/index')
+
+
+
+
 let win
 
 // Scheme must be registered before the app is ready
@@ -30,9 +40,10 @@ protocol.registerSchemesAsPrivileged([{
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 1000,
-    height: 600,
+    width: WINDOW_WIDTH,
+    height: WINDOW_HEIGHT,
     frame: false, // 无边框
+    center: true,
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true
@@ -67,10 +78,12 @@ function createMenu() {
   if (process.platform === 'darwin') {
     const template = [{
       label: 'App Demo',
-      submenu: [{role: 'about'},
-        {
-          role: 'quit'
-        }
+      submenu: [{
+        role: 'about'
+      },
+      {
+        role: 'quit'
+      }
       ]
     }]
     let menu = Menu.buildFromTemplate(template)
@@ -111,10 +124,13 @@ ipcMain.on('all-window-maxi', () => {
 // 窗口正常化
 ipcMain.on('all-window-normal', () => {
   win.setBounds({
-    width: 1000,
-    height: 600
+    width: WINDOW_WIDTH,
+    height: WINDOW_HEIGHT
   })
+  // 窗口居中函数
+  win.center();
 })
+
 
 app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
@@ -137,3 +153,4 @@ if (isDevelopment) {
     })
   }
 }
+

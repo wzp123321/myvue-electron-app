@@ -1,66 +1,78 @@
 <template>
-  <el-container class="container">
-    <el-container style="flex:1">
-      <el-aside width="200px">
-        <AsideView />
-      </el-aside>
-      <el-container>
-        <el-header class="header">
-          <HeaderView />
-        </el-header>
-        <el-main class="main">
-          <router-view />
-        </el-main>
+  <div>
+    <el-container class="container" id="main">
+      <el-container style="position: relative;">
+        <el-aside width="230px" class="aside">
+          <aside-view />
+        </el-aside>
+        <el-container>
+          <el-header class="header" height="50px" style="-webkit-app-region: drag">
+            <header-view height="50px" />
+          </el-header>
+          <el-main class="main">
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
+          </el-main>
+        </el-container>
       </el-container>
+      <el-footer class="footer" height="70px">
+        <footer-view height="70px" />
+      </el-footer>
     </el-container>
-    <el-footer class="footer">Footer</el-footer>
-  </el-container>
+  </div>
 </template>
 <script>
-import { Container, Footer, Header, Aside, Main } from "element-ui";
-import AsideView from "@/components/Aside/index";
-import HeaderView from "@/components/Header/index";
+import { Container, Header, Main, Footer, Aside } from "element-ui";
+import AsideView from "@/components/Aside";
+import HeaderView from "@/components/Header";
+import FooterView from "@/components/Footer";
+
 export default {
-  name: "Main",
   components: {
-    "el-container": Container,
-    "el-footer": Footer,
-    "el-header": Header,
-    "el-aside": Aside,
-    "el-main": Main,
     AsideView,
-    HeaderView
+    HeaderView,
+    FooterView,
+    "el-container": Container,
+    "el-header": Header,
+    "el-main": Main,
+    "el-footer": Footer,
+    "el-aside": Aside
   }
 };
 </script>
 <style lang="less" scoped>
-.container {
-  height: 100vh;
+.aside {
   display: flex;
   flex-direction: column;
-  .aside {
-    display: flex;
-    flex-direction: column;
-    background: #fafafa;
-  }
+  background: linear-gradient(to bottom, #efefef, #efefef);
+}
 
-  .header {
-    background: #fff;
-  }
+.container {
+  height: 100vh;
+}
 
-  .main {
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    flex: 1;
-    flex-shrink: 0;
-    background: #fafafa;
-  }
+.header {
+  background: #fafafa;
+}
 
-  .footer {
-    background: #f7f7f7;
-    padding: 0;
-  }
+.main {
+  background: #fafafa;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  flex-shrink: 0;
+}
+
+.footer {
+  width: 100%;
+  background: #f7f7f7;
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
 }
 </style>

@@ -1,41 +1,60 @@
 <template>
   <div class="flex-space header-wrapper">
-    <div>
+    <div style="-webkit-app-region: no-drag" class="left">
       <!-- <i class="iconfont iconwebicon214"></i>
       <i class="iconfont iconxiangyou"></i>-->
-      <i class="iconfont iconshuaxin"></i>
+      <div>
+        <i class="iconfont iconshuaxin" @click="reloadWindow"></i>
+      </div>
+      <div class="search">
+        <el-input
+          size="mini"
+          prefix-icon="el-icon-search"
+          v-model="searchValue"
+          placeholder="搜索音乐、MV、歌单、用户"
+        ></el-input>
+      </div>
     </div>
-    <div class="right-icon">
+    <div class="right-icon" style="-webkit-app-region: no-drag">
       <i class="iconfont iconzuixiaohua1" @click="minimizeWindow"></i>
-      <i class="iconfont iconzuidahua1" v-if="!isNormal" @click="normalWindow"></i>
-      <i class="iconfont iconzuidahuazhijiao" v-if="isNormal" @click="maximizeWindow"></i>
+      <i class="iconfont iconzuidahua1 icon" v-show="isNormal" @click="normalWindow"></i>
+      <i class="iconfont iconzuidahuazhijiao icon" v-show="!isNormal" @click="maximizeWindow"></i>
       <i class="iconfont iconguanbi2" @click="closeWindow"></i>
     </div>
   </div>
 </template>
 <script>
 const { ipcRenderer } = require("electron");
-import { MessageBox } from "element-ui";
+import { MessageBox, Input } from "element-ui";
+import HttpApi from '@/assets/api/index'
 export default {
   name: "HeaderView",
-  components: {},
+  components: {
+    "el-input": Input
+  },
   data() {
     return {
-      isNormal: true
+      isNormal: false,
+      searchValue: ""
     };
   },
   methods: {
+    // 刷新页面
+    reloadWindow() {
+      ipcRenderer.send("page-refresh");
+    },
     // 最小化
     minimizeWindow() {
       ipcRenderer.send("all-window-mini");
     },
     // 最大化
     maximizeWindow() {
+      this.isNormal = true;
       ipcRenderer.send("all-window-maxi");
     },
     // 正常化
     normalWindow() {
-      this.isNormal = true;
+      this.isNormal = false;
       ipcRenderer.send("all-window-normal");
     },
     // 关闭窗口  ipcRenderer的send事件
@@ -46,17 +65,36 @@ export default {
         type: "warning"
       })
         .then(() => {
-          this.isNormal = false;
           ipcRenderer.send("all-window-close");
         })
         .catch(() => {});
     }
+  },
+  async created() {
   }
 };
 </script>
 <style lang="less" scoped>
 .header-wrapper {
-  padding-top: 10px;
+  padding: 10px 8px;
+  .left {
+    display: flex;
+    flex-direction: row;
+    .iconfont {
+      display: inline-block;
+      margin-top: 5px;
+    }
+    .search {
+      margin-left: 15px;
+      width: 200px;
+      .el-input__inner {
+        border: none;
+        border-radius: 30px;
+        background: #e9e9e9;
+        color: #8c8c8c;
+      }
+    }
+  }
   .right-icon {
     .iconfont {
       font-size: 12px;
@@ -65,7 +103,7 @@ export default {
     .iconfont:hover {
       color: #06a5ff;
     }
-    .iconfont:nth-child(2) {
+    .icon {
       padding: 0 15px;
     }
   }
