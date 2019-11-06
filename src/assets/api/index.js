@@ -9,10 +9,11 @@ export default {
   $$path: {
     getpcbanners: '/banner',
     getintroduceplaylist: '/personalized',
-    getplaylisttypelist:'/playlist/catlist',
+    getplaylisttypelist: '/playlist/catlist',
     getintroducealbumlist: '/top/album',
     gettopmusiclist: '/top/list',
-    getmusicdetail: '/song/url',
+    getmusicurl: '/song/url',
+    getmusicdetail: '/song/detail',
     getmusiclyricbyid: '/lyric',
     getsingerlistbycat: '/artist/list',
     gethotsingerlist: '/top/artists',
@@ -54,8 +55,12 @@ export default {
   getTopMusicList(params) {
     return getRequest(this.$$path.gettopmusiclist, params)
   },
-  //    根据id获取歌曲详细信息
-  getMusicInfoById(params) {
+  //    根据id获取歌曲播放地址
+  getMusicUrlById(params) {
+    return getRequest(this.$$path.getmusicurl, params)
+  },
+  //    根据id获取歌曲信息
+  getMusicDetailById(params) {
     return getRequest(this.$$path.getmusicdetail, params)
   },
   //    根据id获取歌曲歌词

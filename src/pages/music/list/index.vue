@@ -17,7 +17,7 @@
 <script>
 import { Carousel, CarouselItem } from "element-ui";
 import HttpApi from "@/assets/api/index";
-import PlayList from "./playlistInfo";
+import PlayList from "./playlistItem";
 export default {
   name: "ListModule",
   components: {
@@ -78,12 +78,14 @@ export default {
   }
   .title {
     text-align: left;
+    padding-left: 10px;
     h2 {
       margin: 10px 0;
     }
     .type-span {
+      font-size: 14px;
       display: inline-block;
-      padding: 10px 21px;
+      padding: 5px 21px;
       margin-right: 10px;
       background: #fff;
     }

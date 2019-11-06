@@ -1,6 +1,6 @@
 <template>
-  <div class="playlist">
-    <img :src="playInfo.picUrl" alt />
+  <div class="playlist" @click="getToInfo(playInfo.id)">
+    <el-image style="width:100%;height:110px" :src="playInfo.picUrl" fit="fill"></el-image>
     <h4>{{playInfo.name}}</h4>
     <div class="icon frs">
       <div>
@@ -14,11 +14,20 @@
   </div>
 </template>
 <script>
+import { Image } from "element-ui";
 export default {
   name: "PlayList",
   props: {
     playInfo: {
       type: Object
+    }
+  },
+  components: {
+    "el-image": Image
+  },
+  methods: {
+    getToInfo(id){
+      this.$router.push('/music/playlist/info/'+id)
     }
   }
 };
@@ -29,9 +38,8 @@ export default {
   height: 160px;
   border: 1px solid #eee;
   position: relative;
-  img {
-    width: 100%;
-    height: 110px;
+  .el-image:hover {
+    opacity: 0.7;
   }
   h4 {
     margin: 3px;

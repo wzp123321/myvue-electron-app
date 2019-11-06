@@ -21,6 +21,10 @@ const routes = [{
           component: require('@/pages/music/list/index').default,
         },
         {
+          path: '/music/playlist/info/:id',
+          component: require('@/pages/music/list/playInfo').default,
+        },
+        {
           path: '/music/mv',
           component: require('@/pages/music/mv/index').default,
         },

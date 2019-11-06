@@ -32,7 +32,7 @@ export const menulist = [{
   children: [{
     icon: 'iconxihuan',
     title: '我喜欢',
-    path: '/person/love'
+    path: '/personal/love'
   },
   {
     icon: 'icon31',

@@ -2,7 +2,7 @@
   <div>
     <el-container class="container" id="main">
       <el-container class="top">
-        <el-aside width="230px" class="aside">
+        <el-aside width="180px" class="aside">
           <aside-view />
         </el-aside>
         <el-container>

@@ -1,22 +1,25 @@
 <template>
   <div class="footer-view">
     <a-player
+      :autoplay="true"
+      ref="audio"
       :showLrc="true"
-      mode="single"
+      @ended="playEnd"
       :music="{
-        title: song.title,
-        author: song.author,
-        url:song.url,
+        title:song.musicname,
+        artist: song.singername,
+        src,
         pic: song.pic,
-        lrc:''
-    }"
-    :list="playList"
+        lrc
+      }"
+      :list="playList"
     ></a-player>
   </div>
 </template>
 <script>
 import VueAplayer from "vue-aplayer";
 import { mapGetters, mapActions } from "vuex";
+import HttpApi from "@/assets/api/index";
 export default {
   name: "Footer",
   components: {
@@ -29,11 +32,51 @@ export default {
       default: "70"
     }
   },
-  methods: {
-    ...mapActions(["getCurrentSong", "getPlayList"])
+  data() {
+    return {
+      lrc: "",
+      src: "ddddddddd"
+    };
   },
-  created() {
-    console.log(this.song);
+  methods: {
+    ...mapActions(["setCurrentSong"]),
+    async getMusicLyricById() {
+      const res = await HttpApi.getMusicLyricById({ id: this.song.id });
+
+      if (res && res.data && res.data.lrc && res.data.lrc.lyric) {
+        const lrc = res.data.lrc.lyric;
+        this.lrc = lrc;
+      }
+    },
+    async getMusicUrlById() {
+      const res = await HttpApi.getMusicUrlById({ id: this.song.id });
+      if (res && res.data) {
+        const src = res.data.data[0].url;
+        this.src = src;
+      }
+    },
+    playEnd() {
+      const song = this.song;
+      let sort = 0;
+      this.playList.map((item, index) => {
+        if (item.id === song.id) {
+          sort = index === this.playList.length - 1 ? 0 : index + 1;
+        }
+      });
+      this.setCurrentSong(this.playList[sort]);
+    }
+  },
+  watch: {
+    song: function(newVal, oldVal) {
+      if (JSON.stringify(newVal) !== "{}") {
+        document
+          .getElementsByTagName("audio")[0]
+          .setAttribute("autoplay", true);
+        this.$refs.audio.play();
+        this.getMusicLyricById();
+        this.getMusicUrlById();
+      }
+    }
   }
 };
 </script>

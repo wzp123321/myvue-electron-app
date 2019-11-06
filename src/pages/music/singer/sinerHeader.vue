@@ -43,20 +43,20 @@ export default {
   display: flex;
   flex-direction: column;
   h2 {
+    margin-left: 10px;
     font-size: 20px;
-    margin: 0;
   }
   .tag-item {
     display: flex;
     flex-wrap: wrap;
     .tagbtn {
-      width: 88px;
+      width: 83px;
       /*flex: 1;*/
       /*flex-shrink: 0;*/
       background-color: white;
       margin-left: 5px;
       text-align: center;
-      font-size: 12px;
+      font-size: 10px;
       color: #555;
       line-height: 30px;
       cursor: pointer;

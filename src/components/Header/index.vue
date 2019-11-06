@@ -2,8 +2,8 @@
   <div class="flex-space header-wrapper">
     <div style="-webkit-app-region: no-drag" class="left">
       <i
-        class="iconfont iconwebicon214"
-        style="display:inline-block;margin-right:10px"
+        class="iconfont iconxiangzuo"
+        style="display:inline-block;margin-right:15px"
         @click="routeBack"
       ></i>
       <!-- <i class="iconfont iconxiangyou" @click="routeGo"></i> -->
