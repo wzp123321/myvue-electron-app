@@ -11,12 +11,9 @@
         <i class="iconfont iconshuaxin" @click="reloadWindow"></i>
       </div>
       <div class="search">
-        <el-input
-          size="mini"
-          prefix-icon="el-icon-search"
-          v-model="searchValue"
-          placeholder="搜索音乐、MV、歌单、用户"
-        ></el-input>
+        <el-input size="mini" v-model="searchValue" @keyup.enter.native="search" placeholder="搜索音乐、MV、歌单、用户">
+          <i slot="suffix" class="iconfont iconsousuo" @click="search"></i>
+        </el-input>
       </div>
     </div>
     <div class="right-icon" style="-webkit-app-region: no-drag">
@@ -29,7 +26,7 @@
 </template>
 <script>
 const { ipcRenderer } = require("electron");
-import { MessageBox, Input } from "element-ui";
+import { MessageBox, Input, Message } from "element-ui";
 import HttpApi from "@/assets/api/index";
 export default {
   name: "HeaderView",
@@ -39,7 +36,7 @@ export default {
   props: {
     height: {
       type: String,
-      default:'50'
+      default: "50"
     }
   },
   data() {
@@ -81,10 +78,14 @@ export default {
     },
     routeBack() {
       this.$router.back();
+    },
+    search() {
+      if (this.searchValue.trim() === "") {
+        Message.error("兄嘚，输点东西再搜呗!");
+      } else {
+        this.$router.push("/search/" + encodeURIComponent(this.searchValue));
+      }
     }
-    // routeGo(){
-    //   this.$router.go()
-    // }
   },
   async created() {}
 };

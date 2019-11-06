@@ -20,7 +20,7 @@ export function formatDuring(time) {
 
   return (
     (hours > 0 ? hours + ':' : '') +
-    (minutes > 0 ? minutes + ':' : '') +
+    (minutes > 0 ? minutes + ':' : '00') +
     (seconds > 0 ? ( Math.floor(seconds) < 10 ? '0' +  Math.floor(seconds) : Math.floor(seconds)) : '00')
   )
 }

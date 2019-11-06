@@ -73,7 +73,7 @@ const routes = [{
       ]
     },
     {
-      path: '/search:key',
+      path: '/search/:key',
       component: require('@/pages/searchpage/index').default,
     }
   ]

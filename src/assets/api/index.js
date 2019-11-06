@@ -123,7 +123,7 @@ export default {
   getAlbumInfoById(params) {
     return getRequest(this.$$path.getalbuminfobyid, params)
   },
-  // 调用此接口 , 传入专辑 id, 可获得专辑动态信息,如是否收藏,收藏数,评论数,分享数
+  // 调用此接口 , 传入专辑id, 可获得专辑动态信息,如是否收藏,收藏数,评论数,分享数
   getAlbumDataCountById(params) {
     return getRequest(this.$$path.getalbumdatacountbyid, params)
   },
