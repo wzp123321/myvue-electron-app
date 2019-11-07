@@ -1,5 +1,5 @@
 <template>
-    <h1>ddddddddd</h1>
+    <h1>try</h1>
 </template>
 <script>
 export default {

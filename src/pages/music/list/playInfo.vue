@@ -67,7 +67,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["setPlayList", "setCurrentSong"]),
+    ...mapActions(["setPlayList", "setCurrentSong",'setHistoryList']),
     async getPlayInfo() {
       const id = this.$route.params.id;
       const res = await HttpApi.getPlayListDetailById({ id });
@@ -92,6 +92,7 @@ export default {
     },
     playMusic(id, singername, musicname, pic) {
       this.setCurrentSong({ id, singername, musicname, pic });
+      this.setHistoryList({ id, singername, musicname, pic });
       this.setplayList();
     },
     playAll() {

@@ -92,7 +92,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .header-wrapper {
-  padding: 10px 8px;
+  padding: 10px 0;
   .left {
     display: flex;
     flex-direction: row;

@@ -12,9 +12,9 @@
     <el-table-column label="所属专辑">
       <template slot-scope="scope">{{scope.row.al.name}}</template>
     </el-table-column>
-    <el-table-column>
+    <el-table-column class="icon-column">
       <template slot-scope="scope">
-        <i class="iconfont iconxihuan"></i>
+        <i class="iconfont iconxihuan" style="color:pink"></i>
         <i
           class="iconfont iconbofang"
           @click="playMusic(scope.row.id,scope.row.ar[0].name,scope.row.name,scope.row.al.picUrl)"
@@ -38,9 +38,10 @@ export default {
     "el-table-column": TableColumn
   },
   methods: {
-    ...mapActions(["setCurrentSong", "setPlayList"]),
+    ...mapActions(["setCurrentSong", "setPlayList", "setHistoryList"]),
     playMusic(id, singername, musicname, pic) {
       this.setCurrentSong({ id, singername, musicname, pic });
+      this.setHistoryList({ id, singername, musicname, pic });
       const playList = this.tableData.map(item => {
         return {
           id: item.id,
@@ -55,4 +56,12 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.iconfont {
+  display: inline-block;
+  margin: 0 5px;
+}
+.iconfont:hover {
+  color: #06a5ff;
+  cursor: pointer;
+}
 </style>

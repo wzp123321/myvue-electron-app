@@ -19,6 +19,7 @@
 <script>
 import VueAplayer from "vue-aplayer";
 import { mapGetters, mapActions } from "vuex";
+import { Message } from "element-ui";
 import HttpApi from "@/assets/api/index";
 export default {
   name: "Footer",
@@ -50,9 +51,13 @@ export default {
     },
     async getMusicUrlById() {
       const res = await HttpApi.getMusicUrlById({ id: this.song.id });
-      if (res && res.data) {
+      if (res && res.data && res.data.data[0].url) {
         const src = res.data.data[0].url;
         this.src = src;
+      } else {
+        // 暂停播放
+        this.$refs.audio.pause();
+        Message.error("sorry，该歌曲暂无版权!");
       }
     },
     playEnd() {

@@ -26,7 +26,7 @@ const {
 
 
 
-let win
+let win = null;
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([{
