@@ -26,11 +26,6 @@ const history = {
       pic: "http://p1.music.126.net/qVUJ9aDeRop5pj3QDixIsQ==/109951163353510177.jpg",
       singername: "张雨生",
     }, {
-      id: 5253894,
-      musicname: "别哭,我最爱的人",
-      pic: "http://p1.music.126.net/_AI9r84Dx79hnwL7tGiHlA==/124244813956670.jpg",
-      singername: "郑智化",
-    }, {
       id: 77131,
       musicname: "有多少爱可以重来",
       pic: "http://p1.music.126.net/TIQMdKKvWY0dDr-yKBaBeQ==/19000660439853455.jpg",
@@ -40,6 +35,11 @@ const history = {
       musicname: "爱我的人和我爱的人",
       pic: "http://p1.music.126.net/0GN5mg4qzxmqGES0H3AdhQ==/98956046505536.jpg",
       singername: "游鸿明",
+    }, {
+      id: 25714352,
+      musicname: "空白格 (Live)",
+      pic: "http://p1.music.126.net/s2rrkEZ6S7UVAJI-D1M4lA==/2258396883454110.jpg",
+      singername: "杨宗纬",
     }]
   },
   getters: {

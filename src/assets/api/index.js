@@ -33,7 +33,11 @@ export default {
     getvideoinfo: '/video/detail',
     getvideourlbyid: '/video/url',
     getvideocommentbyid: '/comment/video',
-    getplaylistinfo: '/playlist/detail'
+    getplaylistinfo: '/playlist/detail',
+    getnewmvlist: '/mv/first',
+    getrecommendmvlist: '/personalized/mv',
+    getwymvlist: '/mv/exclusive/rcmd'
+
   },
   //   推荐页面banner
   getPCBannersList(params) {
@@ -142,5 +146,17 @@ export default {
   // 根据id获取歌单详情
   getPlayListDetailById(params) {
     return getRequest(this.$$path.getplaylistinfo, params)
+  },
+  // 获取最新mv列表
+  getNewMvList(params) {
+    return getRequest(this.$$path.getnewmvlist, params)
+  },
+  // 获取推荐列表
+  getRecommendMvList(params) {
+    return getRequest(this.$$path.getrecommendmvlist, params)
+  },
+  // 获取网易推荐mv列表
+  getWYMvList(params) {
+    return getRequest(this.$$path.getwymvlist, params)
   },
 }

@@ -1,7 +1,7 @@
 <template>
   <el-dialog :visible.sync="loginVisiable" width="400px" :before-close="close">
     <div class="frc">
-      <img src="../../assets/imgs/icon.jpg" style="width:30px;height:30px;" alt />
+      <img src="@/assets/imgs/icon.jpg" style="width:30px;height:30px;" alt />
       <span class="login-title">拼嘻嘻音乐</span>
     </div>
     <el-form ref="loginForm" :model="form" class="form">

@@ -71,3 +71,23 @@ export const singertags=[
   {name:"其他女歌手",id:" 4002"},
   {name:"其他组合/乐队",id:" 4003"},
 ]
+
+
+export const mvMenuList = [
+  {
+    key:'1',
+    title:'全部',
+  },
+  {
+    key:'2',
+    title:'最新',
+  },
+  {
+    key:'3',
+    title:'推荐',
+  },
+  {
+    key:'4',
+    title:'网易出品',
+  }
+]

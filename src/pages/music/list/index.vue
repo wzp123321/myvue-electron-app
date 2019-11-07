@@ -48,9 +48,9 @@ export default {
       }
     },
     async getPlayList() {
-      const res = await HttpApi.getIntroPlayList();
+      const res = await HttpApi.getIntroPlayList({limit:50});
       if (res && res.data) {
-        const playlists = res.data.result.splice(0, 12);
+        const playlists = res.data.result;
         this.playlists = playlists;
       }
     }

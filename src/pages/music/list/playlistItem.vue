@@ -1,6 +1,6 @@
 <template>
   <div class="playlist" @click="getToInfo(playInfo.id)">
-    <el-image style="width:100%;height:110px" :src="playInfo.picUrl" fit="fill"></el-image>
+    <el-image style="width:100%;height:110px" :src="playInfo.picUrl || playInfo.coverImgUrl" fit="fill"></el-image>
     <h4>{{playInfo.name}}</h4>
     <div class="icon frs">
       <div>

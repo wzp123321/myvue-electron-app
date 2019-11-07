@@ -1,12 +1,15 @@
 <template>
   <div class="mv-wrap">
-    <div></div>
+    <MvInfo v-for="(item,index) in mvs" :key="index" :mvInfo="item"></MvInfo>
   </div>
 </template>
 <script>
+import MvInfo from "@/pages/music/mv/mvinfo";
 export default {
   name: "MvModule",
-  components: {},
+  components: {
+    MvInfo
+  },
   props: {
     mvs: {
       type: Array
@@ -15,4 +18,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.mv-wrap {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
 </style>

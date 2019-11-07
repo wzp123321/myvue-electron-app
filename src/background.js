@@ -44,6 +44,7 @@ function createWindow() {
     height: WINDOW_HEIGHT,
     frame: false, // 无边框
     center: true,
+    title:'拼嘻嘻音乐',
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true
