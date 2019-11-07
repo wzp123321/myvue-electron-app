@@ -1,6 +1,6 @@
 <template>
   <el-dialog :visible.sync="loginVisiable" width="400px" :before-close="close">
-    <div class="frc">
+    <div class="fcc">
       <img src="@/assets/imgs/icon.jpg" style="width:30px;height:30px;" alt />
       <span class="login-title">拼嘻嘻音乐</span>
     </div>
@@ -38,7 +38,9 @@
   </el-dialog>
 </template>
 <script>
-import { Dialog, Form, FormItem, Input, Button } from "element-ui";
+import { Dialog, Form, FormItem, Input, Button, Message } from "element-ui";
+import HttpApi from "@/assets/api/index";
+import { mapActions } from "vuex";
 export default {
   name: "LoginView",
   components: {
@@ -67,12 +69,20 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["setUserInfo"]),
     submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        console.log("valid", valid);
+      this.$refs[formName].validate(async valid => {
         if (valid) {
+          const res = await HttpApi.getUserLoginByEmail({
+            email: this.form.username,
+            password: this.form.password
+          });
+          if (res && res.data) {
+            this.setUserInfo(res.data.account);
+            Message.success("登录成功");
+            this.$emit("loginClose");
+          }
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

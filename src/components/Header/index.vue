@@ -22,10 +22,18 @@
       </div>
     </div>
     <div class="right-icon" style="-webkit-app-region: no-drag">
-      <i class="iconfont iconzuixiaohua1" @click="minimizeWindow"></i>
-      <i class="iconfont iconzuidahua1 icon" v-show="isNormal" @click="normalWindow"></i>
-      <i class="iconfont iconzuidahuazhijiao icon" v-show="!isNormal" @click="maximizeWindow"></i>
-      <i class="iconfont iconguanbi2" @click="closeWindow"></i>
+      <span>
+        <i class="iconfont iconzuixiaohua1" @click="minimizeWindow"></i>
+      </span>
+      <span v-show="isNormal">
+        <i class="iconfont iconzuidahua1 icon" @click="normalWindow"></i>
+      </span>
+      <span v-show="!isNormal">
+        <i class="iconfont iconzuidahuazhijiao icon" @click="maximizeWindow"></i>
+      </span>
+      <span>
+        <i class="iconfont iconguanbi2" @click="closeWindow"></i>
+      </span>
     </div>
   </div>
 </template>
@@ -33,6 +41,7 @@
 const { ipcRenderer } = require("electron");
 import { MessageBox, Input, Message } from "element-ui";
 import HttpApi from "@/assets/api/index";
+
 export default {
   name: "HeaderView",
   components: {
@@ -92,12 +101,13 @@ export default {
       }
     }
   },
-  async created() {}
+  async created() {},
+ 
 };
 </script>
 <style lang="less" scoped>
 .header-wrapper {
-  padding: 10px 0;
+  padding: 6px 0;
   .left {
     display: flex;
     flex-direction: row;
@@ -117,15 +127,24 @@ export default {
     }
   }
   .right-icon {
-    .iconfont {
-      font-size: 12px;
+    span {
       display: inline-block;
+      padding: 1px 7px;
+      .iconfont {
+        font-size: 12px;
+      }
     }
-    .iconfont:hover {
-      color: #06a5ff;
+    span:hover {
+      background: #eee;
+      .iconfont {
+        color: #06a5ff;
+      }
     }
-    .icon {
-      padding: 0 15px;
+    span:last-child:hover {
+      background: red;
+      .iconfont {
+        color: #fff;
+      }
     }
   }
 }

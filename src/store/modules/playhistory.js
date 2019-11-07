@@ -1,3 +1,8 @@
+import {
+  Message,
+  MessageBox
+} from 'element-ui'
+
 const history = {
   state: {
     historyList: [{
@@ -40,6 +45,16 @@ const history = {
       musicname: "空白格 (Live)",
       pic: "http://p1.music.126.net/s2rrkEZ6S7UVAJI-D1M4lA==/2258396883454110.jpg",
       singername: "杨宗纬",
+    }, {
+      id: 452986458,
+      musicname: "红昭愿",
+      pic: "http://p1.music.126.net/8ltR3o9R8uJ9_5Cc71cDhA==/109951162951242154.jpg",
+      singername: "音阙诗听",
+    },{
+      id:441491828,
+      musicname:"水星记",
+      pic:"https://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+      singername:"郭顶",
     }]
   },
   getters: {
@@ -50,6 +65,19 @@ const history = {
   mutations: {
     gethistorylist: function (state, data) {
       state.historyList.push(data)
+    },
+    gethisttoryitemdelete: function (state, data) {
+      MessageBox.confirm("确认删除该条歌曲吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          state.historyList.splice(data, 1)
+          Message.success('删除成功')
+        })
+        .catch(() => {});
+
     }
   },
   actions: {
@@ -57,8 +85,13 @@ const history = {
       commit
     }, data) {
       commit('gethistorylist', data)
+    },
+    getHistoryDel({
+      commit
+    }, data) {
+      commit('gethisttoryitemdelete', data)
     }
-  }
+  },
 }
 
 export default history

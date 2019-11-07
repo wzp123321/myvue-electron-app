@@ -55,7 +55,7 @@ export default {
 
     .header {
       background: #fafafa;
-      padding: 0 10px !important;
+      padding: 0 8px !important;
     }
 
     .main {

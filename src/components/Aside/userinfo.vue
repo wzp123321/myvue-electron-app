@@ -3,25 +3,34 @@
     <!-- 未登录 -->
     <div class="userinfo-wrap">
       <i class="iconfont icontouxiang" @click="login"></i>
-      <p @click="login">立即登录</p>
+      <p @click="login" v-if="!isLogin">立即登录</p>
+      <p v-else>{{userinfo.userName}}</p>
     </div>
-    <!-- 已登录 -->
-    <div></div>
     <!-- 登录对话框 -->
     <LoginView :loginVisiable="loginVisiable" @loginClose="loginClose" />
   </div>
 </template>
 <script>
 import LoginView from "../Login/index";
+import { mapGetters } from "vuex";
 export default {
   name: "UserInfo",
   components: {
     LoginView
   },
+  computed: mapGetters(["userinfo"]),
   data() {
     return {
-      loginVisiable: false
+      loginVisiable: false,
+      isLogin: false
     };
+  },
+  watch: {
+    userinfo: function(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.isLogin = true;
+      }
+    }
   },
   methods: {
     login() {

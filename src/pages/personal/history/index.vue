@@ -21,6 +21,7 @@
             class="iconfont iconbofang"
             @click="playMusic(scope.row.id,scope.row.singername,scope.row.musicname,scope.row.pic)"
           ></i>
+          <i class="iconfont iconshanchu" @click="delHistoryItem(scope.$index)"></i>
         </template>
       </el-table-column>
     </el-table>
@@ -37,7 +38,12 @@ export default {
     "el-table-column": TableColumn
   },
   methods: {
-    ...mapActions(["setPlayList", "setCurrentSong", "setHistoryList"]),
+    ...mapActions([
+      "setPlayList",
+      "setCurrentSong",
+      "setHistoryList",
+      "getHistoryDel"
+    ]),
     // 双击事件
     rowDbClick(row, column, event) {
       this.playMusic(row.id, row.singername, row.musicname, row.pic);
@@ -45,6 +51,9 @@ export default {
     playMusic(id, singername, musicname, pic) {
       this.setCurrentSong({ id, singername, musicname, pic });
       this.setPlayList(this.historyList);
+    },
+    delHistoryItem(index) {
+      this.getHistoryDel(index);
     }
   }
 };
@@ -55,6 +64,21 @@ export default {
   .iconfont:hover {
     cursor: pointer;
     font-size: 18px;
+  }
+  table {
+    tbody {
+      tr {
+        .iconshanchu {
+          display: none;
+        }
+      }
+      tr:hover {
+        .iconshanchu {
+          display: inline-block;
+          margin-left: 10px;
+        }
+      }
+    }
   }
 }
 </style>
