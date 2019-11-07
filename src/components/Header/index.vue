@@ -11,7 +11,12 @@
         <i class="iconfont iconshuaxin" @click="reloadWindow"></i>
       </div>
       <div class="search">
-        <el-input size="mini" v-model="searchValue" @keyup.enter.native="search" placeholder="搜索音乐、MV、歌单、用户">
+        <el-input
+          size="mini"
+          v-model="searchValue"
+          @keyup.enter.native="search"
+          placeholder="搜索音乐、MV、歌单、用户"
+        >
           <i slot="suffix" class="iconfont iconsousuo" @click="search"></i>
         </el-input>
       </div>

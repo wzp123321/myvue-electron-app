@@ -7,7 +7,7 @@
       <MvModule :mvs="mvs"></MvModule>
     </el-tab-pane>
     <el-tab-pane label="歌单" name="third">
-      <PlayListModule :playlists='playlists'></PlayListModule>
+      <PlayListModule :playlists="playlists"></PlayListModule>
     </el-tab-pane>
     <el-tab-pane label="歌手" name="fourth">
       <ArtistModule :artists="artists"></ArtistModule>
@@ -16,11 +16,12 @@
 </template>
 <script>
 import HttpApi from "@/assets/api/index";
-import { Tabs, TabPane } from "element-ui";
+import { Tabs, TabPane, Loading } from "element-ui";
 import SongsModule from "./songs";
 import MvModule from "./mvs";
-import PlayListModule from './playlists'
-import ArtistModule from './artists'
+import PlayListModule from "./playlists";
+import ArtistModule from "./artists";
+let loadingService;
 export default {
   name: "Searchmodule",
   components: {
@@ -43,6 +44,7 @@ export default {
   methods: {
     handleClick(e) {},
     async getSearchData() {
+      loadingService = Loading.service({ fullscreen: true });
       const keywords = this.$route.params.key;
       const arrays = ["songs", "playlists", "mvs", "artists"];
 
@@ -62,6 +64,7 @@ export default {
             this[arrays[index]] = data;
           }
         });
+        loadingService.close();
       }
     }
   },

@@ -10,6 +10,8 @@
 import SingerHeader from "./sinerHeader";
 import HttpApi from "@/assets/api/index";
 import SingerItem from "./singerItem";
+import { Loading } from "element-ui";
+let loadingService;
 export default {
   name: "SingerModule",
   components: {
@@ -27,6 +29,7 @@ export default {
       this.id = id;
     },
     async getSingerListById() {
+      loadingService = Loading.service({ fullscreen: true });
       const method =
         this.id === "0" ? "getHotSingerList" : "getSingerListByCat";
       const params = this.id === "0" ? {} : { cat: this.id };
@@ -35,6 +38,7 @@ export default {
       if (res && res.data) {
         const singers = res.data.artists;
         this.singers = singers;
+        loadingService.close();
       }
     }
   },

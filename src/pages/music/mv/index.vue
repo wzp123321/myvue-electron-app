@@ -2,10 +2,10 @@
   <div class="mv-content">
     <MvHeader @change="menuChange"></MvHeader>
     <div class="area-div">
-        <span></span>
+      <span></span>
     </div>
     <div class="type-div">
-        <span></span>
+      <span></span>
     </div>
     <div class="mv-item">
       <MvInfo v-for="(item,index) in mvlist" :key="index" :mvInfo="item"></MvInfo>
@@ -16,6 +16,9 @@
 import MvHeader from "./mvheader";
 import MvInfo from "./mvinfo";
 import HttpApi from "@/assets/api/index";
+import { Loading } from "element-ui";
+
+let loadingService;
 export default {
   name: "MvModule",
   components: {
@@ -43,36 +46,44 @@ export default {
     },
     // 获取全部mv列表
     async getTotalMvList() {
+      loadingService = Loading.service({ fullscreen: true });
       const res = await HttpApi.getMvListByAreaType({ limit: 20, offset: 0 });
       if (res && res.data) {
         const mvlist = res.data.data;
         const total = res.data.count;
         this.mvlist = mvlist;
         this.total = total;
+        loadingService.close();
       }
     },
     // 获取最新mv列表
     async getNewMvList() {
+      loadingService = Loading.service({ fullscreen: true });
       const res = await HttpApi.getNewMvList({ limit: 20 });
       if (res && res.data) {
         const mvlist = res.data.data;
         this.mvlist = mvlist;
+        loadingService.close();
       }
     },
     // 获取推荐mv列表
     async getRecommendMvList() {
+      loadingService = Loading.service({ fullscreen: true });
       const res = await HttpApi.getRecommendMvList({ limit: 20 });
       if (res && res.data) {
         const mvlist = res.data.result;
         this.mvlist = mvlist;
+        loadingService.close();
       }
     },
     // 获取网易出品mv列表
     async getWyMvList() {
+      loadingService = Loading.service({ fullscreen: true });
       const res = await HttpApi.getWYMvList({ limit: 20 });
       if (res && res.data) {
         const mvlist = res.data.data;
         this.mvlist = mvlist;
+        loadingService.close();
       }
     }
   },

@@ -4,7 +4,7 @@
       class="info-content"
       :data="historyList"
       style="width: 100%"
-      @row-dblclick="playMusic(scope.row.id,scope.row.singername,scope.row.musicname,scope.row.pic)"
+      @row-dblclick="rowDbClick"
     >
       <el-table-column label="序号">
         <template slot-scope="scope">{{scope.$index+1}}</template>
@@ -38,6 +38,10 @@ export default {
   },
   methods: {
     ...mapActions(["setPlayList", "setCurrentSong", "setHistoryList"]),
+    // 双击事件
+    rowDbClick(row, column, event) {
+      this.playMusic(row.id, row.singername, row.musicname, row.pic);
+    },
     playMusic(id, singername, musicname, pic) {
       this.setCurrentSong({ id, singername, musicname, pic });
       this.setPlayList(this.historyList);
@@ -48,5 +52,9 @@ export default {
 <style lang="less" scoped>
 .info-wrap {
   width: 100%;
+  .iconfont:hover {
+    cursor: pointer;
+    font-size: 18px;
+  }
 }
 </style>

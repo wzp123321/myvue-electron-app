@@ -15,9 +15,10 @@
   </div>
 </template>
 <script>
-import { Carousel, CarouselItem } from "element-ui";
+import { Carousel, CarouselItem, Loading } from "element-ui";
 import HttpApi from "@/assets/api/index";
 import PlayList from "./playlistItem";
+let loadingInstance;
 export default {
   name: "ListModule",
   components: {
@@ -34,10 +35,12 @@ export default {
   },
   methods: {
     async getBannersList() {
+      loadingInstance = Loading.service({ fullscreen: true });
       const res = await HttpApi.getPCBannersList({ type: 0 });
       if (res && res.data) {
         const banners = res.data.banners;
         this.banners = banners;
+        loadingInstance.close();
       }
     },
     async getPlayListType() {
@@ -48,10 +51,12 @@ export default {
       }
     },
     async getPlayList() {
-      const res = await HttpApi.getIntroPlayList({limit:50});
+      loadingInstance = Loading.service({ fullscreen: true });
+      const res = await HttpApi.getIntroPlayList({ limit: 50 });
       if (res && res.data) {
         const playlists = res.data.result;
         this.playlists = playlists;
+        loadingInstance.close();
       }
     }
   },

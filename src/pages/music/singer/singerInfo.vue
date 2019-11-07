@@ -30,10 +30,11 @@
 </template>
 <script>
 import HttpApi from "@/assets/api/index";
-import { Tabs, TabPane } from "element-ui";
+import { Tabs, TabPane, Loading } from "element-ui";
 import SingerMv from "./singerdata/mv";
 import Singerdesc from "./singerdata/desc";
 import SingerSong from "./singerdata/songs";
+let loadingService;
 export default {
   name: "SingerInfo",
   components: {
@@ -57,6 +58,7 @@ export default {
   methods: {
     handleClick(tab, e) {},
     async getSingerDesc() {
+      loadingService = Loading.service({ fullscreen: true });
       const { id } = this;
       const res = await HttpApi.getSingerDescbyId({ id });
       if (res && res.data) {
@@ -64,22 +66,27 @@ export default {
         const introduction = res.data.introduction;
         this.singerDesc = singerDesc;
         this.introduction = introduction;
+        loadingService.close();
       }
     },
     async getSingerMVList() {
+      loadingService = Loading.service({ fullscreen: true });
       const { id } = this;
       const res = await HttpApi.getSingerMVList({ id });
       if (res && res.data) {
         const singermvs = res.data.mvs;
         this.singermvs = singermvs;
+        loadingService.close();
       }
     },
     async getSingerArtist() {
+      loadingService = Loading.service({ fullscreen: true });
       const { id } = this;
       const res = await HttpApi.getSingerArtist({ id });
       if (res && res.data) {
         const singerInfo = res.data;
         this.singerInfo = singerInfo;
+        loadingService.close();
       }
     }
   },
