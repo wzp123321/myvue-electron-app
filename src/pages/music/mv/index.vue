@@ -14,7 +14,7 @@
 </template>
 <script>
 import MvHeader from "./mvheader";
-import MvInfo from "./mvinfo";
+import MvInfo from "./mvitem";
 import HttpApi from "@/assets/api/index";
 import { Loading } from "element-ui";
 

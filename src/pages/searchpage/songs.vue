@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="songs" style="width: 100%">
+  <el-table :data="songs" style="width: 100%" @row-dblclick="rowDbClick">
     <el-table-column label="序号">
       <template slot-scope="scope">{{scope.$index+1}}</template>
     </el-table-column>
@@ -42,6 +42,14 @@ export default {
     format(time) {
       return formatDuring(time);
     },
+    rowDbClick(row, column, e) {
+      this.playMusic(
+        row.id,
+        row.artists[0].name,
+        row.name,
+        row.artists[0].img1v1Url
+      );
+    },
     playMusic(id, singername, musicname, pic) {
       this.setCurrentSong({ id, singername, musicname, pic });
       const playList = this.songs.map(item => {
@@ -58,4 +66,14 @@ export default {
 };
 </script>
 <style lang='less' scoped>
+table {
+  tbody {
+    tr:hover {
+      .iconfont {
+        transform: 300ms all;
+        font-size: 18px;
+      }
+    }
+  }
+}
 </style>

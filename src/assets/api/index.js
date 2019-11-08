@@ -36,7 +36,9 @@ export default {
     getplaylistinfo: '/playlist/detail',
     getnewmvlist: '/mv/first',
     getrecommendmvlist: '/personalized/mv',
-    getwymvlist: '/mv/exclusive/rcmd'
+    getwymvlist: '/mv/exclusive/rcmd',
+    getdefaultsearchkey: '/search/default',
+    getuserdetail: '/user/detail'
 
   },
   //   推荐页面banner
@@ -111,6 +113,10 @@ export default {
   getSearchData(params) {
     return getRequest(this.$$path.getsearchdata, params)
   },
+  //    获取搜索框默认值
+  getSearchDefaultKey(params) {
+    return getRequest(this.$$path.getdefaultsearchkey, params)
+  },
   //    根据地区 类型获取mv
   getMvListByAreaType(params) {
     return getRequest(this.$$path.getmvbytypearea, params)
@@ -158,5 +164,9 @@ export default {
   // 获取网易推荐mv列表
   getWYMvList(params) {
     return getRequest(this.$$path.getwymvlist, params)
+  },
+  // 获取用户详情
+  getUserInfoById(params) {
+    return getRequest(this.$$path.getuserdetail, params)
   },
 }

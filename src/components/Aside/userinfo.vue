@@ -13,6 +13,7 @@
 <script>
 import LoginView from "../Login/index";
 import { mapGetters } from "vuex";
+import HttpApi from "@/assets/api/index";
 export default {
   name: "UserInfo",
   components: {
@@ -29,6 +30,7 @@ export default {
     userinfo: function(newVal, oldVal) {
       if (newVal !== oldVal) {
         this.isLogin = true;
+        // this.getUserInfo();
       }
     }
   },
@@ -38,6 +40,13 @@ export default {
     },
     loginClose() {
       this.loginVisiable = false;
+    },
+    async getUserInfo() {
+      const res = await HttpApi.getUserInfoById({ uid: this.userinfo.id });
+
+      if (res && res.data) {
+        console.log(res.data);
+      }
     }
   }
 };

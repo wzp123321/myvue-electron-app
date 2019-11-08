@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import MvInfo from "@/pages/music/mv/mvinfo";
+import MvInfo from "@/pages/music/mv/mvitem";
 export default {
   name: "MvModule",
   components: {

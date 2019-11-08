@@ -1,5 +1,5 @@
 <template>
-  <div class="mv-wrap">
+  <div class="mv-wrap" @click="toMvDetail(mvInfo.id)">
     <el-image style="width: 140px;height:80px" :src="mvInfo.cover" fit="contain"></el-image>
     <div class="name">{{mvInfo.name}}</div>
     <div class="name">{{mvInfo.artistName}}</div>
@@ -29,6 +29,11 @@ export default {
   },
   components: {
     "el-image": Image
+  },
+  methods: {
+    toMvDetail(id) {
+      this.$router.push("/music/mv/info/" + id);
+    }
   }
 };
 </script>
@@ -40,6 +45,9 @@ export default {
   position: relative;
   font-size: 10px;
   text-align: left;
+  .el-image:hover {
+    opacity: 0.8;
+  }
   .name {
     font-size: 12px;
     padding: 3px 2px;
@@ -53,7 +61,7 @@ export default {
     padding: 9px 0;
     position: absolute;
     left: 0;
-    top: 48px;
+    top: 50px;
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
     span {
@@ -63,5 +71,9 @@ export default {
       font-size: 8px;
     }
   }
+}
+.mv-wrap:hover {
+  transform: 500ms all;
+  border: 1px solid #eee;
 }
 </style>

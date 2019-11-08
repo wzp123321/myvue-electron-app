@@ -14,6 +14,10 @@
       }"
       :list="playList"
     ></a-player>
+    <div class="icon">
+      <i class="iconfont iconshangyishou" @click="playEnd('left')"></i>
+      <i class="iconfont iconxiayishou" @click="playEnd('right')"></i>
+    </div>
   </div>
 </template>
 <script>
@@ -60,12 +64,12 @@ export default {
         Message.error("sorry，该歌曲暂无版权!");
       }
     },
-    playEnd() {
+    playEnd(type='right') {
       const song = this.song;
       let sort = 0;
       this.playList.map((item, index) => {
         if (item.id === song.id) {
-          sort = index === this.playList.length - 1 ? 0 : index + 1;
+          sort = index === this.playList.length - 1 ? 0 :type === 'right'?  index + 1 : index - 1;
         }
       });
       this.setCurrentSong(this.playList[sort]);
@@ -91,5 +95,20 @@ export default {
   position: relative;
   z-index: 200;
   padding-bottom: 10px;
+  .icon {
+    position: absolute;
+    top: 34px;
+    left: 100px;
+    .iconfont {
+      font-size: 22px;
+      color: #706a6a;
+      display: inline-block;
+      margin: 0 5px;
+    }
+    .iconfont:hover {
+      font-size: 24px;
+      color: #31c27c;
+    }
+  }
 }
 </style>

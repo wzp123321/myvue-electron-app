@@ -29,6 +29,10 @@ const routes = [{
           component: require('@/pages/music/mv/index').default,
         },
         {
+          path: '/music/mv/info/:id',
+          component: require('@/pages/music/mv/mvplay').default,
+        },
+        {
           path: '/music/radio',
           component: require('@/pages/music/radio/index').default,
         },

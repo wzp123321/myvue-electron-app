@@ -35,12 +35,10 @@ export default {
   },
   methods: {
     async getBannersList() {
-      loadingInstance = Loading.service({ fullscreen: true });
       const res = await HttpApi.getPCBannersList({ type: 0 });
       if (res && res.data) {
         const banners = res.data.banners;
         this.banners = banners;
-        loadingInstance.close();
       }
     },
     async getPlayListType() {

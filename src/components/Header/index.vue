@@ -15,7 +15,7 @@
           size="mini"
           v-model="searchValue"
           @keyup.enter.native="search"
-          placeholder="搜索音乐、MV、歌单、用户"
+          :placeholder="placeholder"
         >
           <i slot="suffix" class="iconfont iconsousuo" @click="search"></i>
         </el-input>
@@ -56,7 +56,9 @@ export default {
   data() {
     return {
       isNormal: false,
-      searchValue: ""
+      searchValue: "",
+      trueValue: "",
+      placeholder: "搜索音乐、MV、歌单、用户"
     };
   },
   methods: {
@@ -94,15 +96,31 @@ export default {
       this.$router.back();
     },
     search() {
-      if (this.searchValue.trim() === "") {
-        Message.error("兄嘚，输点东西再搜呗!");
-      } else {
-        this.$router.push("/search/" + encodeURIComponent(this.searchValue));
+      // if () {
+      //   Message.error("兄嘚，输点东西再搜呗!");
+      // } else {
+      this.$router.push(
+        "/search/" +
+          encodeURIComponent(
+            this.searchValue.trim() === "" ? this.trueValue : this.searchValue
+          )
+      );
+      // }
+    },
+    // 获取默认搜索值
+    async getDefaultSearchKey() {
+      const res = await HttpApi.getSearchDefaultKey();
+      if (res && res.data) {
+        const trueValue = res.data.data.realkeyword;
+        const placeholder = res.data.data.showKeyword;
+        this.trueValue = trueValue;
+        this.placeholder = placeholder;
       }
     }
   },
-  async created() {},
- 
+  async created() {
+    this.getDefaultSearchKey();
+  }
 };
 </script>
 <style lang="less" scoped>

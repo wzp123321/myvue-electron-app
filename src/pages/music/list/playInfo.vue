@@ -23,7 +23,12 @@
         <div class="desc">{{playInfo.description}}</div>
       </div>
     </div>
-    <el-table class="info-content" :data="playInfo.tracks" style="width: 100%">
+    <el-table
+      class="info-content"
+      :data="playInfo.tracks"
+      style="width: 100%"
+      @row-dblclick="rowDbClick"
+    >
       <el-table-column label="序号">
         <template slot-scope="scope">{{scope.$index+1}}</template>
       </el-table-column>
@@ -48,10 +53,12 @@
   </div>
 </template>
 <script>
-import { Image, Avatar, Button, Table, TableColumn } from "element-ui";
+import { Image, Avatar, Button, Table, TableColumn, Loading } from "element-ui";
 import HttpApi from "@/assets/api/index";
 import { formatDuring } from "@/utils/formatDate";
 import { mapActions } from "vuex";
+
+let loadingService;
 export default {
   name: "PlayInfo",
   components: {
@@ -67,13 +74,15 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["setPlayList", "setCurrentSong",'setHistoryList']),
+    ...mapActions(["setPlayList", "setCurrentSong", "setHistoryList"]),
     async getPlayInfo() {
+      loadingService = Loading.service({ fullscreen: true });
       const id = this.$route.params.id;
       const res = await HttpApi.getPlayListDetailById({ id });
       if (res && res.data) {
         const playInfo = res.data.playlist;
         this.playInfo = playInfo;
+        loadingService.close();
       }
     },
     format(time) {
@@ -89,6 +98,9 @@ export default {
         };
       });
       this.setPlayList(playList);
+    },
+    rowDbClick(row, column, e) {
+      this.playMusic(row.id, row.name, row.ar[0].name.row.al.picUrl);
     },
     playMusic(id, singername, musicname, pic) {
       this.setCurrentSong({ id, singername, musicname, pic });
@@ -136,6 +148,16 @@ export default {
   }
   .info-content {
     padding: 10px;
+  }
+}
+table {
+  tbody {
+    tr:hover {
+      .iconfont {
+        transform: 500ms all;
+        font-size: 18px;
+      }
+    }
   }
 }
 </style>

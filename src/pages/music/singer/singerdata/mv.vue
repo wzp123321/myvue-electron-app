@@ -1,6 +1,6 @@
 <template>
   <div class="mv-wrap">
-    <div v-for="(item,index) in mvs" :key="index" class="mvitem">
+    <div v-for="(item,index) in mvs" :key="index" class="mvitem" @click="toMvplay(item.id)">
       <el-image :src="item.imgurl" style="width:125px;height:90px"></el-image>
       <h2>{{item.name}}</h2>
       <div class="artist">
@@ -30,6 +30,11 @@ export default {
   props: {
     mvs: {
       type: Array
+    }
+  },
+  methods: {
+    toMvplay(id) {
+      this.$router.push("/music/mv/info/" + id);
     }
   }
 };
