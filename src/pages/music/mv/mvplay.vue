@@ -71,6 +71,9 @@ export default {
       speedlist: ["0,5", "1.0", "1.5", "2.0"]
     };
   },
+  /**
+   * Todo   ------ 搞清楚loading和icon显示   数据加载完成函数
+   */
   methods: {
     // video点击事件
     onVideoClick() {

@@ -50,12 +50,69 @@ const history = {
       musicname: "红昭愿",
       pic: "http://p1.music.126.net/8ltR3o9R8uJ9_5Cc71cDhA==/109951162951242154.jpg",
       singername: "音阙诗听",
-    },{
-      id:441491828,
-      musicname:"水星记",
-      pic:"https://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
-      singername:"郭顶",
-    }]
+    }, {
+      id: 441491828,
+      musicname: "水星记",
+      pic: "https://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+      singername: "郭顶",
+    }, {
+      id: 190072,
+      musicname: "黄昏",
+      pic: "http://p2.music.126.net/Y91B_GXc5d9t-0X0Uu_7xw==/109951163063096750.jpg",
+      singername: "周传雄",
+    }, {
+      id: 1330348068,
+      musicname: "起风了",
+      pic: "http://p2.music.126.net/diGAyEmpymX8G7JcnElncQ==/109951163699673355.jpg",
+      singername: "买辣椒也用券",
+    }, {
+      id: 553310243,
+      musicname: "后来的我们",
+      pic: "http://p2.music.126.net/s6bXQX0M-H9EoeqGfr4wrg==/109951163250238942.jpg",
+      singername: "五月天",
+    }, {
+      id: 86363,
+      musicname: "此生不换",
+      pic: "http://p1.music.126.net/2-_sPmCBnN6VfwFmONRy2Q==/46179488378975.jpg",
+      singername: "青鸟飞鱼",
+    }, {
+      id: 1348548292,
+      musicname: "伪装",
+      pic: "http://p1.music.126.net/0lTZqHtNKlSNUladoc0DZQ==/109951163903233984.jpg",
+      singername: "大壮",
+    }, {
+      id: 256081,
+      musicname: "天后",
+      pic: "http://p1.music.126.net/vO5aWlp5cO2OnIUFbToMCQ==/109951163167564366.jpg",
+      singername: "刘力扬",
+    },
+    {
+      id: 167799,
+      musicname: "怎么说我不爱你",
+      pic: "http://p1.music.126.net/mM9MlfEcfh6i7rupRo-jyA==/109951163188726567.jpg",
+      singername: "萧敬腾",
+    }, {
+      id: 516728102,
+      musicname: "浪子回头",
+      pic: "http://p2.music.126.net/emWwYFceRZ2plNWgnGUDfg==/109951163333175426.jpg",
+      singername: "茄子蛋",
+    }, {
+      id: 569213220,
+      musicname: "像我这样的人",
+      pic: "http://p2.music.126.net/vmCcDvD1H04e9gm97xsCqg==/109951163350929740.jpg",
+      singername: "毛不易",
+    }, {
+      id: 1348548292,
+      musicname: "伪装",
+      pic: "http://p1.music.126.net/0lTZqHtNKlSNUladoc0DZQ==/109951163903233984.jpg",
+      singername: "大壮",
+    }, {
+      id: 486218073,
+      musicname: "BINGBIAN病变（prod.jurrivh）",
+      pic: "http://p1.music.126.net/FcW4qPSjTLRJORMWNHeElA==/109951162955696086.jpg",
+      singername: "Cubi",
+    }
+    ]
   },
   getters: {
     historyList: function (state) {

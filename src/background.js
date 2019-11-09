@@ -6,7 +6,8 @@ import {
   app,
   protocol,
   BrowserWindow,
-  ipcMain
+  ipcMain,
+  Tray,// 托盘
 } from 'electron'
 
 import {
@@ -17,13 +18,11 @@ import {
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-
+// 引入窗口宽高常量
 const {
   WINDOW_WIDTH,
   WINDOW_HEIGHT
 } = require('./common/index')
-
-
 
 
 let win = null;
@@ -102,11 +101,46 @@ app.on('window-all-closed', () => {
   }
 })
 
+// 声明托盘变量
+let tray  = null;
 app.on('activate', () => {
   if (win === null) {
     createWindow()
   }
+  tray = new Tray('./assets/imgs/icon.jpg')
+  tray.setTitle('拼嘻嘻音乐')
 })
+
+// 应用更新-----相关配置
+require('update-electron-app')({
+  repo: 'wzp123321/https://github.com/wzp123321/myvue-electron-app.git', // github存储库
+  updateInterval: '1 hour', // 检查更新的频率
+  logger: require('electron-log'), // 定义log功能的自定义记录器对象
+  notifyUser:true , //启用后，将提示用户下载后立即应用更新。
+})
+
+
+app.on('ready', async () => {
+  if (isDevelopment && !process.env.IS_TEST) {
+    BrowserWindow.addDevToolsExtension(path.resolve(__dirname, '../devTools/vue-devtools'));
+  }
+  createWindow()
+})
+
+// Exit cleanly on request from parent process in development mode.
+if (isDevelopment) {
+  if (process.platform === 'win32') {
+    process.on('message', data => {
+      if (data === 'graceful-exit') {
+        app.quit()
+      }
+    })
+  } else {
+    process.on('SIGTERM', () => {
+      app.quit()
+    })
+  }
+}
 
 /**
  * 进程间通信
@@ -132,26 +166,3 @@ ipcMain.on('all-window-normal', () => {
   // 窗口居中函数
   win.center();
 })
-
-
-app.on('ready', async () => {
-  if (isDevelopment && !process.env.IS_TEST) {
-    BrowserWindow.addDevToolsExtension(path.resolve(__dirname, '../devTools/vue-devtools'));
-  }
-  createWindow()
-})
-
-// Exit cleanly on request from parent process in development mode.
-if (isDevelopment) {
-  if (process.platform === 'win32') {
-    process.on('message', data => {
-      if (data === 'graceful-exit') {
-        app.quit()
-      }
-    })
-  } else {
-    process.on('SIGTERM', () => {
-      app.quit()
-    })
-  }
-}

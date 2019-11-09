@@ -4,7 +4,7 @@
       :autoplay="true"
       ref="audio"
       :showLrc="true"
-      @ended="playEnd"
+      @ended="playEnd('right')"
       :music="{
         title:song.musicname,
         artist: song.singername,
@@ -64,12 +64,18 @@ export default {
         Message.error("sorry，该歌曲暂无版权!");
       }
     },
-    playEnd(type='right') {
+    playEnd(type) {
       const song = this.song;
       let sort = 0;
       this.playList.map((item, index) => {
         if (item.id === song.id) {
-          sort = index === this.playList.length - 1 ? 0 :type === 'right'?  index + 1 : index - 1;
+          if(type ==='right'){
+            // 下一首
+            sort = index === this.playList.length-1 ? 0 :index+1
+          }else{
+            // 上一首
+            sort = index=== 0 ? this.playList.length-1 : index-1
+          }
         }
       });
       this.setCurrentSong(this.playList[sort]);

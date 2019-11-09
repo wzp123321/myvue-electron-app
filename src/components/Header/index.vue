@@ -105,6 +105,7 @@ export default {
             this.searchValue.trim() === "" ? this.trueValue : this.searchValue
           )
       );
+      this.searchValue = "";
       // }
     },
     // 获取默认搜索值
