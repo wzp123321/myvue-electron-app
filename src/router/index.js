@@ -84,7 +84,9 @@ const routes = [{
 }]
 
 const router = new VueRouter({
-  mode: 'history',
+  /**
+   * 打包 需要更改路由模式
+   */
   base: process.env.BASE_URL,
   routes
 })
