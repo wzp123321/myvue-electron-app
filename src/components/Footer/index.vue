@@ -69,12 +69,12 @@ export default {
       let sort = 0;
       this.playList.map((item, index) => {
         if (item.id === song.id) {
-          if(type ==='right'){
+          if (type === "right") {
             // 下一首
-            sort = index === this.playList.length-1 ? 0 :index+1
-          }else{
+            sort = index === this.playList.length - 1 ? 0 : index + 1;
+          } else {
             // 上一首
-            sort = index=== 0 ? this.playList.length-1 : index-1
+            sort = index === 0 ? this.playList.length - 1 : index - 1;
           }
         }
       });

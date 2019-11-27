@@ -43,6 +43,7 @@ export default {
   height: 160px;
   margin: 5px 10px;
   position: relative;
+  bottom: 0;
   font-size: 10px;
   text-align: left;
   .el-image:hover {
@@ -73,7 +74,6 @@ export default {
   }
 }
 .mv-wrap:hover {
-  transform: 500ms all;
-  border: 1px solid #eee;
+  bottom: 3px;
 }
 </style>

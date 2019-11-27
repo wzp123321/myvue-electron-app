@@ -1,6 +1,10 @@
 <template>
   <div class="playlist" @click="getToInfo(playInfo.id)">
-    <el-image style="width:100%;height:110px" :src="playInfo.picUrl || playInfo.coverImgUrl" fit="fill"></el-image>
+    <el-image
+      style="width:100%;height:110px"
+      :src="playInfo.picUrl || playInfo.coverImgUrl"
+      fit="fill"
+    ></el-image>
     <h4>{{playInfo.name}}</h4>
     <div class="icon frs">
       <div>
@@ -26,8 +30,8 @@ export default {
     "el-image": Image
   },
   methods: {
-    getToInfo(id){
-      this.$router.push('/music/playlist/info/'+id)
+    getToInfo(id) {
+      this.$router.push("/music/playlist/info/" + id);
     }
   }
 };
@@ -38,6 +42,7 @@ export default {
   height: 160px;
   border: 1px solid #eee;
   position: relative;
+  bottom: 0;
   .el-image:hover {
     opacity: 0.7;
   }
@@ -67,5 +72,8 @@ export default {
       display: inline-block;
     }
   }
+}
+.playlist:hover {
+  bottom: 3px;
 }
 </style>

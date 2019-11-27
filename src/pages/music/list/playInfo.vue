@@ -127,6 +127,7 @@ export default {
   display: flex;
   flex-direction: column;
   .info-header {
+    padding: 10px 5px;
     .header-title {
       margin-left: 10px;
       h1 {
