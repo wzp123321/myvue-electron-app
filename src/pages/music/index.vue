@@ -1,10 +1,17 @@
 <template>
   <div class="content-index">
-   <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 <script>
-export default {};
+import axios from "axios";
+export default {
+  mounted() {
+    axios.get("http://localhost:3001/upload").then(res => {
+      console.log("res", res);
+    });
+  }
+};
 </script>
 <style lang="less" scoped>
 .content-index {

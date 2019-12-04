@@ -1,5 +1,4 @@
 'use strict'
-
 const path = require('path');
 import {
   Menu,
@@ -7,7 +6,7 @@ import {
   protocol,
   BrowserWindow,
   ipcMain,
-  Tray,// 托盘
+  Tray, // 托盘
 } from 'electron'
 
 import {
@@ -79,13 +78,7 @@ function createMenu() {
   if (process.platform === 'darwin') {
     const template = [{
       label: 'App Demo',
-      submenu: [{
-        role: 'about'
-      },
-      {
-        role: 'quit'
-      }
-      ]
+      submenu: []
     }]
     let menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
@@ -102,7 +95,7 @@ app.on('window-all-closed', () => {
 })
 
 // 声明托盘变量
-let tray  = null;
+let tray = null;
 app.on('activate', () => {
   if (win === null) {
     createWindow()
@@ -116,7 +109,7 @@ require('update-electron-app')({
   repo: 'wzp123321/https://github.com/wzp123321/myvue-electron-app.git', // github存储库
   updateInterval: '1 hour', // 检查更新的频率
   logger: require('electron-log'), // 定义log功能的自定义记录器对象
-  notifyUser:true , //启用后，将提示用户下载后立即应用更新。
+  notifyUser: true, //启用后，将提示用户下载后立即应用更新。
 })
 
 
