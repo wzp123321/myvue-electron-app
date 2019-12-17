@@ -7,6 +7,8 @@ import {
   BrowserWindow,
   ipcMain,
   Tray, // 托盘
+  dialog,
+  globalShortcut
 } from 'electron'
 
 import {
@@ -34,13 +36,15 @@ protocol.registerSchemesAsPrivileged([{
     standard: true
   }
 }])
-
+/**
+ * 创建窗口函数
+ */
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     width: WINDOW_WIDTH,
     height: WINDOW_HEIGHT,
-    frame: false, // 无边框
+    // frame: false, // 无边框
     center: true,
     title: '拼嘻嘻音乐',
     webPreferences: {
@@ -75,12 +79,29 @@ function createWindow() {
 // 设置菜单栏
 function createMenu() {
   // darwin表示macOS，针对macOS的设置
-  if (process.platform === 'darwin') {
-    const template = [{
-      label: 'App Demo',
-      submenu: []
-    }]
-    let menu = Menu.buildFromTemplate(template)
+  if (process.platform === 'win32') {
+    const menuTemplate = [{
+      label: 'Edit App',
+      submenu: [{
+        label: 'Undo'
+      },
+      {
+        label: 'Redo'
+      }
+      ]
+    },
+    {
+      label: 'View App',
+      submenu: [{
+        label: 'Reload'
+      },
+      {
+        label: 'Toggle Full Screen'
+      }
+      ]
+    }
+    ];
+    let menu = Menu.buildFromTemplate(menuTemplate)
     Menu.setApplicationMenu(menu)
   } else {
     // windows及linux系统
@@ -117,7 +138,20 @@ app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
     BrowserWindow.addDevToolsExtension(path.resolve(__dirname, '../devTools/vue-devtools'));
   }
-  createWindow()
+  createWindow();
+  // 注册快捷键
+  globalShortcut.register('CommandOrControl+Alt+K', function () {
+    dialog.showMessageBox({
+      type: 'info',
+      message: '成功!',
+      detail: '你按下了一个全局注册的快捷键绑定.',
+      buttons: ['好的']
+    })
+  })
+})
+
+app.on('will-quit', function () {
+  globalShortcut.unregisterAll()
 })
 
 // Exit cleanly on request from parent process in development mode.
