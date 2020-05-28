@@ -1,6 +1,6 @@
 import axios from 'axios'
 // 'https://music.163.com'
-const BASE_URL = 'http://node.zpwan-yz.com'
+const BASE_URL = 'http://132.232.66.140:41200'
 // 定义一个空的数组，用于存放请求中的参数
 import {
   message
