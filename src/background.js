@@ -44,7 +44,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: WINDOW_WIDTH,
     height: WINDOW_HEIGHT,
-    // frame: false, // 无边框
+    frame: false, // 无边框
     center: true,
     title: '拼嘻嘻音乐',
     webPreferences: {
